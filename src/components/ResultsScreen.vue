@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import CategoryIcon from './CategoryIcon.vue'
 import SiteHeader from './SiteHeader.vue'
 import type { CategoryDefinition, GlobalFact, WealthCategory } from '../data/assessment'
@@ -26,8 +26,6 @@ const emit = defineEmits<{
   financial: []
   sources: []
 }>()
-
-const copied = ref(false)
 
 const title = computed(() => {
   if (props.percent >= 82) return 'Your life holds many forms of quiet wealth.'

@@ -1,0 +1,17 @@
+{
+  "name": "Gratitude",
+  "short_name": "Gratitude",
+  "description": "Discover the quiet forms of wealth in your everyday and financial life.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4efe4",
+  "theme_color": "#10382e",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
