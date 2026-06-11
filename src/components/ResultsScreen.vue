@@ -22,6 +22,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   restart: []
   home: []
+  everyday: []
+  financial: []
   sources: []
 }>()
 
@@ -54,26 +56,17 @@ const categoryTone: Record<WealthCategory, string> = {
   freedom: 'gold',
   time: 'green',
 }
-
-async function copyReflection() {
-  const strongest = [...props.categoryResults].sort((a, b) => b.percent - a.percent)[0]
-  const summary = `My everyday wealth profile: ${props.reliableCount} of 15 conditions are reliably present. My strongest area is ${strongest?.category.label.toLowerCase() ?? 'still taking shape'}. A reminder to notice the quiet forms of wealth that make daily life possible.`
-
-  try {
-    await navigator.clipboard.writeText(summary)
-    copied.value = true
-    window.setTimeout(() => {
-      copied.value = false
-    }, 1800)
-  } catch {
-    copied.value = false
-  }
-}
 </script>
 
 <template>
   <main class="results">
-    <SiteHeader light @home="emit('home')" @sources="emit('sources')" />
+    <SiteHeader
+      light
+      @home="emit('home')"
+      @everyday="emit('everyday')"
+      @financial="emit('financial')"
+      @sources="emit('sources')"
+    />
 
     <section class="results__hero">
       <div class="results__score" :style="{ '--result-score': `${percent * 3.6}deg` }">
@@ -88,9 +81,6 @@ async function copyReflection() {
         <h1>{{ title }}</h1>
         <p>{{ reflection }}</p>
         <div class="results__actions">
-          <button class="primary-button primary-button--cream" type="button" @click="copyReflection">
-            {{ copied ? 'Reflection copied' : 'Copy your reflection' }}
-          </button>
           <button class="text-link text-link--light" type="button" @click="emit('restart')">Take it again</button>
         </div>
       </div>

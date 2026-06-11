@@ -2,14 +2,18 @@
 withDefaults(
   defineProps<{
     light?: boolean
+    active?: 'everyday' | 'financial'
   }>(),
   {
     light: false,
+    active: 'everyday',
   },
 )
 
 const emit = defineEmits<{
   home: []
+  everyday: []
+  financial: []
   sources: []
 }>()
 </script>
@@ -25,6 +29,15 @@ const emit = defineEmits<{
       <span>Gratitude</span>
     </button>
 
-    <button class="text-link" type="button" @click="emit('sources')">Method &amp; sources</button>
+    <nav class="site-nav" aria-label="Wealth profiles">
+      <button :class="{ active: active === 'everyday' }" type="button" @click="emit('everyday')">
+        Everyday wealth
+      </button>
+      <button :class="{ active: active === 'financial' }" type="button" @click="emit('financial')">
+        Financial position
+      </button>
+    </nav>
+
+    <button class="text-link site-header__sources" type="button" @click="emit('sources')">Method &amp; sources</button>
   </header>
 </template>

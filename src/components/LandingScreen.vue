@@ -5,13 +5,19 @@ import { categories } from '../data/assessment'
 
 const emit = defineEmits<{
   start: []
+  financial: []
   sources: []
 }>()
 </script>
 
 <template>
   <main class="landing">
-    <SiteHeader @home="() => undefined" @sources="emit('sources')" />
+    <SiteHeader
+      @home="() => undefined"
+      @everyday="() => undefined"
+      @financial="emit('financial')"
+      @sources="emit('sources')"
+    />
 
     <section class="landing__hero">
       <div class="landing__copy">
@@ -52,6 +58,21 @@ const emit = defineEmits<{
           <small>{{ category.description }}</small>
         </span>
       </article>
+    </section>
+
+    <section class="financial-invitation">
+      <div>
+        <p class="eyebrow">Looking for the numbers?</p>
+        <h2>Calculate your financial position in India.</h2>
+      </div>
+      <p>
+        Add your income, savings, assets, and debt for an estimated income and net-worth percentile
+        using published India thresholds.
+      </p>
+      <button type="button" @click="emit('financial')">
+        Open financial calculator
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" /></svg>
+      </button>
     </section>
 
     <footer class="landing__footer">

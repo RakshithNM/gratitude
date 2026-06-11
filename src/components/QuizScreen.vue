@@ -19,6 +19,8 @@ const emit = defineEmits<{
   answer: [score: AnswerScore]
   back: []
   home: []
+  everyday: []
+  financial: []
   sources: []
 }>()
 
@@ -28,7 +30,12 @@ const progress = computed(() => ((props.questionNumber - 1) / props.totalQuestio
 
 <template>
   <main class="quiz">
-    <SiteHeader @home="emit('home')" @sources="emit('sources')" />
+    <SiteHeader
+      @home="emit('home')"
+      @everyday="emit('everyday')"
+      @financial="emit('financial')"
+      @sources="emit('sources')"
+    />
 
     <div class="quiz__progress" aria-hidden="true">
       <span :style="{ width: `${progress}%` }"></span>
